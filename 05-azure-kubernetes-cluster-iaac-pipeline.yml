@@ -16,6 +16,7 @@ steps:
     secureFile: 'azure_rsa.pub'
 
 - task: TerraformCLI@2
+  displayName: "Terraform Init"
   inputs:
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
@@ -30,4 +31,14 @@ steps:
     backendAzureRmStorageAccountName: 'storageaccountpereira'
     backendAzureRmContainerName: 'storageaccountpereiracontainer'
     backendAzureRmKey: 'kubernetes-dev.tfstate'
+    allowTelemetryCollection: true
+
+
+- task: TerraformCLI@2
+  displayName: "Terraform Apply"
+  inputs:
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    environmentServiceName: 'azure-resource-manager-service-connection'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publicKey.secureFilePath)'
     allowTelemetryCollection: true
