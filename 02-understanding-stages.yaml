@@ -20,6 +20,7 @@ stages:
 
 
   - stage:  DevDeploy
+    dependsOn: Build
     jobs:
     - job: FirstJob
       steps:
@@ -29,6 +30,7 @@ stages:
 
 
   - stage:  QADeploy
+    dependsOn: Build
     jobs:
     - job:  FirstJob
       steps:
@@ -36,6 +38,9 @@ stages:
 
       
   - stage:  ProdDeploy
+    dependsOn:
+    - DevDeploy
+    - QADeploy
     jobs:
     - job:  FirstJob
       steps:
