@@ -21,7 +21,7 @@ stages:
       displayName: Build an image
       inputs:
         containerRegistry: 'pedroavpereiradev-docker-hub'
-        repository: 'pedrovapereiradev/currency-exchange'
+        repository: 'pedroavpereiradev/currency-exchange'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
