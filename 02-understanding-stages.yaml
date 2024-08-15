@@ -8,21 +8,21 @@ pool:
 stages:
   - stage:  Build
     jobs:
-      - job: FirstJob
-        steps:
-          - bash: echo $(PipelineLevelVaraible)
-          - bash: echo BuilderNumber:$(Build.BuildNumber)
-          - bash: echo BuildId:$(Build.BuildId)
-          - bash: echo SourceBrandName:%(Build.SourceBrandName)
-          - bash: echo SourcesDirectory:%(Build.SourcesDirectory)
-          - bash: echo ArtifactStagingDirectory:%(Build.ArtifactStagingDirectory)
-          - bash: echo DefaultWorkingDirectory:%(System.DefaultWorkingDirectory)
-          - bash: ls  -R $(System.DefaultWorkingDirectory)
-            displayName: "Stage 1 / Job 2"
-      - job:  SecondJob
-        steps:
-          - bash:  echo Build/SecondJob
-            displayName: "Stage 1 / Job 2"
+    - job: FirstJob
+      steps:
+      - bash: echo $(PipelineLevelVariable)
+      - bash: echo BuilderNumber:$(Build.BuildNumber)
+      - bash: echo BuildId:$(Build.BuildId)
+      - bash: echo SourceBranchName:$(Build.SourceBranchName)
+      - bash: echo SourcesDirectory:$(Build.SourcesDirectory)
+      - bash: echo ArtifactStagingDirectory:$(Build.ArtifactStagingDirectory)
+      - bash: echo DefaultWorkingDirectory:$(System.DefaultWorkingDirectory)
+      - bash: ls -R $(System.DefaultWorkingDirectory)
+        displayName: "Stage 1 / Job 2"
+    - job:  SecondJob
+      steps:
+      - bash:  echo Build/SecondJob
+        displayName: "Stage 1 / Job 2"
 
 
 ##
