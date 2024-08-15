@@ -26,7 +26,7 @@ steps:
     backendAzureRmTenantId: 'bff07bc0-bc49-46ca-9f9f-6ce7c451f2a7'
     backendAzureRmSubscriptionId: '36369a21-480f-47d0-94f2-4f660b59fdda'
     ensureBackend: true
-    backendAzureRmResourceGroupName: 'terraform-backend-rg'
+    backendAzureRmResourceGroupName: 'terraform-backend-rg-west'
     backendAzureRmResourceGroupLocation: 'westeurope'
     backendAzureRmStorageAccountName: 'storageaccountpereira'
     backendAzureRmContainerName: 'storageaccountpereiracontainer'
