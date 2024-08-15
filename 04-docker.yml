@@ -22,6 +22,6 @@ stages:
       inputs:
         containerRegistry: 'pedroavpereiradev-docker-hub'
         repository: 'pedrovapereiradev/currency-exchange'
-        command: 'build'
+        command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
