@@ -39,5 +39,20 @@ stages:
         deploy:
           steps:
           - script: echo deploy to Dev
+          - script : echo Test coverage 90%
+            displayName: "Coverage Results"
+            
+- stage: StaginDeploy
+  jobs:
+  - deployment: StagingDeployJob
+    environment: Staging
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo deploy to Dev
+
+
+
 
 
