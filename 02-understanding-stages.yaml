@@ -12,7 +12,7 @@ stages:
         steps:
           - bash: echo $(PipelineLevelVaraible)
           - bash: echo BuilderNumber:$(Build.BuildNumber)
-          - bash: echo BuildId:%(Build.BuildId)
+          - bash: echo BuildId:$(Build.BuildId)
           - bash: echo SourceBrandName:%(Build.SourceBrandName)
           - bash: echo SourcesDirectory:%(Build.SourcesDirectory)
           - bash: echo ArtifactStagingDirectory:%(Build.ArtifactStagingDirectory)
