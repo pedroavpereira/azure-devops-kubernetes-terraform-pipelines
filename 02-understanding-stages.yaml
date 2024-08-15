@@ -7,7 +7,7 @@ pool:
 
 stages:
   - stage:  Build
-    jobs:
+    jobs: 
     - job: FirstJob
       steps:
       - bash: echo $(PipelineLevelVariable)
@@ -18,11 +18,8 @@ stages:
       - bash: echo ArtifactStagingDirectory:$(Build.ArtifactStagingDirectory)
       - bash: echo DefaultWorkingDirectory:$(System.DefaultWorkingDirectory)
       - bash: ls -R $(System.DefaultWorkingDirectory)
-        displayName: "Stage 1 / Job 2"
-    - job:  SecondJob
-      steps:
-      - bash:  echo Build/SecondJob
-        displayName: "Stage 1 / Job 2"
+
+ 
 
 
 ##
