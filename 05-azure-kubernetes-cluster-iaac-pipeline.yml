@@ -1,0 +1,26 @@
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- task: TerraformCLI@2
+  inputs:
+    command: 'init'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$()'
+    backendType: 'azurerm'
+    backendServiceArm: 'azure-resource-manager-service-connection'
+    backendAzureRmTenantId: 'bff07bc0-bc49-46ca-9f9f-6ce7c451f2a7'
+    backendAzureRmSubscriptionId: '36369a21-480f-47d0-94f2-4f660b59fdda'
+    ensureBackend: true
+    backendAzureRmResourceGroupName: 'terraform-backend-rg'
+    backendAzureRmResourceGroupLocation: 'westeurope'
+    backendAzureRmStorageAccountName: 'storageaccountpereira'
+    backendAzureRmContainerName: 'storageaccountpereiracontainer'
+    backendAzureRmKey: 'kubernetes-dev.tfstate'
+    allowTelemetryCollection: true
