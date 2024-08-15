@@ -26,7 +26,7 @@ stages:
     jobs:
     - job: FirstJob
       steps:
-      - bash: echo $(environement)/FirstJob
+      - bash: echo $(environment)/FirstJob
         displayName: "Stage 2 / Job 1"
 
 
