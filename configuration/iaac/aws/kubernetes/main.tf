@@ -30,7 +30,7 @@ module "lfacademy-cluster" {
   cluster_name    = "lfacademy-cluster"
   cluster_version = "1.28"
   # subnet_ids      = ["subnet-0565c72c8be2a4a50", "subnet-0e0be61b12e125be5"]
-  subnet_ids      = ["subnet-0f284497708e66e28", "subnet-0ace8e0c6513e0045", "subnet-07311d7c1fc545e83"]
+  subnet_ids      = ["subnet-077c814b52bca9466", "subnet-0a0a6c366cee5d877"]
   vpc_id                         = aws_default_vpc.default.id
   cluster_endpoint_public_access = true
   eks_managed_node_groups = {
