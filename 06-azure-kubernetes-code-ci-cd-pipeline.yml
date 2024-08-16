@@ -54,6 +54,7 @@ stages:
         itemPattern: '**/*.yaml'
         targetPath: '$(System.ArtifactDirectory)'
     
+    - bash: ls -R $(System.ArtifactDirectory)
     - task: KubernetesManifest@1
       displayName: K8s Deployment
       inputs:
