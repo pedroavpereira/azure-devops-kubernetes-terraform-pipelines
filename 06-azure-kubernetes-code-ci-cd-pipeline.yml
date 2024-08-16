@@ -34,7 +34,7 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: Publish K8S Files
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        PathtoPublish: '$(System.ArtifactStagingDirectory)'
         ArtifactName: 'manifests'
         publishLocation: 'Container'
 
