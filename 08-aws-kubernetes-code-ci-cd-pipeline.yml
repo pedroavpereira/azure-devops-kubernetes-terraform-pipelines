@@ -1,0 +1,68 @@
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  # tag: '$(Build.BuildId)'
+  tag: 76
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    # - task: Docker@2
+    #   displayName: Build an image
+    #   inputs:
+    #     containerRegistry: 'pedroavpereiradev-docker-hub'
+    #     repository: 'pedroavpereiradev/currency-exchange'
+    #     command: 'buildAndPush'
+    #     Dockerfile: '**/Dockerfile'
+    #     tags: '$(tag)'
+
+    - task: CopyFiles@2
+      displayName: "Copy artifact files"
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '**/*.yaml'
+        TargetFolder: '$(Build.ArtifactsStagingDirectory)'
+
+    - task: PublishBuildArtifacts@1
+      displayName: "Publish artifact"    
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'manifests'
+        publishLocation: 'Container'
+    
+- stage:
+  displayName: Deploy
+  jobs:
+  - job:  Deploy
+    displayName: Kubectl apply
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: DownloadPipelineArtifact@2
+      displayName: "Download artifacts"
+      inputs:
+        buildType: 'current'
+        artifactName: 'manifests'
+        itemPattern: '**/*.yaml'
+        targetPath: '$(System.ArtifactDirectory)'
+        
+    - task: KubernetesManifest@1
+      inputs:
+        action: 'deploy'
+        connectionType: 'kubernetesServiceConnection'
+        kubernetesServiceConnection: 'aws-kubernetes-cluster-service-connection'
+        namespace: 'default'
+        manifests: '$(System.ArtifactDirectory)/configuration/kubernetes/deployment.yaml'
+        containers: pedroavpereiradev/currency-exchange:$(tag)
+    
